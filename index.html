@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The United Biomes - Crossplay Survival SMP</title>
+    <meta name="description" content="Join The United Biomes, a crossplay survival SMP server for Java and Bedrock players.">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700;800&family=Public+Sans:wght@500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="loader" class="pixel-loader-container" aria-hidden="true">
+        <div class="pixel-loader">
+            <div class="pixel-box grass"></div>
+            <div class="pixel-box dirt"></div>
+            <p class="loader-text">Loading Biomes...</p>
+        </div>
+    </div>
+
+    <nav class="modern-navbar">
+        <div class="navbar-content">
+            <a href="#home" class="nav-logo click-sound-trigger" aria-label="The United Biomes home">
+                <i class="fas fa-cubes"></i>
+                <span>United Biomes</span>
+            </a>
+
+            <div class="nav-links" aria-label="Primary navigation">
+                <a href="#home" class="nav-item active click-sound-trigger">Home</a>
+                <a href="#server-info" class="nav-item click-sound-trigger">Play</a>
+                <a href="#gallery" class="nav-item click-sound-trigger">Gallery</a>
+                <a href="#registration" class="nav-item click-sound-trigger">Guide</a>
+                <a href="#features" class="nav-item click-sound-trigger">Why Us</a>
+                <a href="#discord-section" class="nav-item click-sound-trigger">Discord</a>
+            </div>
+
+            <div class="nav-actions">
+                <button id="sound-toggle" class="sound-btn click-sound-trigger" type="button" aria-label="Toggle sound">
+                    <i class="fas fa-volume-up"></i>
+                </button>
+                <a href="https://discord.gg/Pjap87gSqY" target="_blank" rel="noreferrer" class="nav-cta-btn click-sound-trigger">
+                    Join Discord
+                </a>
+            </div>
+
+            <button class="mobile-menu-toggle click-sound-trigger" type="button" aria-label="Toggle menu" aria-expanded="false">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+
+        <div class="mobile-nav-dropdown">
+            <a href="#home" class="mobile-nav-item click-sound-trigger">Home</a>
+            <a href="#server-info" class="mobile-nav-item click-sound-trigger">Play</a>
+            <a href="#gallery" class="mobile-nav-item click-sound-trigger">Gallery</a>
+            <a href="#registration" class="mobile-nav-item click-sound-trigger">Guide</a>
+            <a href="#features" class="mobile-nav-item click-sound-trigger">Why Us</a>
+            <a href="#discord-section" class="mobile-nav-item click-sound-trigger">Discord</a>
+            <a href="https://discord.gg/Pjap87gSqY" target="_blank" rel="noreferrer" class="mobile-cta-btn click-sound-trigger">Join Discord</a>
+        </div>
+    </nav>
+
+    <audio id="click-sound" src="click.mp3" preload="auto"></audio>
+
+    <header id="home" class="hero-section">
+        <div class="hero-container">
+            <div class="hero-copy">
+                <div class="hero-badge reveal-fade" id="global-status-badge">
+                    <span class="redstone-lamp loading" id="global-lamp"></span>
+                    <span id="global-status">Checking server status...</span>
+                </div>
+
+                <h1 class="hero-title reveal-fade">The United<br>Biomes.</h1>
+
+                <p class="hero-description reveal-fade">
+                    A vibrant crossplay survival SMP for Java and Bedrock players. Build together, explore together, and jump into a friend-run world that opens every day from 9 AM to 9 PM.
+                </p>
+
+                <div class="hero-buttons reveal-fade">
+                    <a href="#server-info" class="btn btn-primary click-sound-trigger">
+                        Start Playing <i class="fas fa-arrow-right"></i>
+                    </a>
+                    <a href="https://discord.gg/Pjap87gSqY" target="_blank" rel="noreferrer" class="btn btn-secondary click-sound-trigger">
+                        <i class="fab fa-discord"></i> Join Discord
+                    </a>
+                </div>
+            </div>
+
+            <div class="hero-showcase reveal-fade">
+                <div class="hero-image-stack">
+                    <img class="hero-image hero-image-main" src="java1.png" alt="United Biomes Java survival landscape">
+                    <img class="hero-image hero-image-secondary" src="bedrock1.jpeg" alt="United Biomes Bedrock survival landscape">
+                </div>
+                <div class="hero-status-card">
+                    <span class="status-kicker">Server window</span>
+                    <strong id="status-window-label">9:00 AM - 9:00 PM IST</strong>
+                    <span id="status-countdown">Checking schedule...</span>
+                    <span id="server-time-label">Server time: --:--</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="bento-wrapper">
+        <section id="server-info" class="bento-section">
+            <div class="section-header reveal-fade">
+                <span class="pill-tag green">Connect Now</span>
+                <h2 class="section-title">Jump right in.</h2>
+                <p class="section-desc">Add the server to your multiplayer list using the details below.</p>
+            </div>
+
+            <div class="bento-grid-3">
+                <div class="bento-card schedule-card reveal-fade">
+                    <div class="clock-widget">
+                        <div class="clock-casing">
+                            <div class="clock-dial" id="clock-dial">
+                                <div class="sun-face"><i class="fas fa-sun"></i></div>
+                                <div class="moon-face"><i class="fas fa-moon"></i></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="schedule-info">
+                        <h3>Operating Hours</h3>
+                        <p class="time-label">9:00 AM - 9:00 PM IST, every day</p>
+                        <div class="live-status-pill">
+                            <span class="redstone-lamp loading" id="schedule-lamp"></span>
+                            <span id="schedule-status-text">Checking time...</span>
+                        </div>
+                        <p class="status-note" id="schedule-next-change">Server time sync starting...</p>
+                    </div>
+                </div>
+
+                <div class="bento-card connection-card java reveal-fade">
+                    <div class="card-header">
+                        <div class="platform-icon java"><i class="fab fa-java"></i></div>
+                        <div class="status-light-badge" id="java-status-badge">
+                            <span class="redstone-lamp loading"></span>
+                            <span class="badge-text">Checking...</span>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <h3>Java Edition</h3>
+                        <p class="card-desc">Standard connection details for PC and desktop players.</p>
+
+                        <div class="ip-copy-wrapper">
+                            <div class="ip-display">
+                                <span class="label">Server IP</span>
+                                <code id="java-ip">know-chassis.gl.joinmc.link</code>
+                            </div>
+                            <button class="btn-copy click-sound-trigger" type="button" data-copy-target="java-ip" aria-label="Copy Java IP">
+                                <i class="far fa-copy"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bento-card connection-card bedrock reveal-fade">
+                    <div class="card-header">
+                        <div class="platform-icon bedrock"><i class="fas fa-mobile-alt"></i></div>
+                        <div class="status-light-badge" id="bedrock-status-badge">
+                            <span class="redstone-lamp loading"></span>
+                            <span class="badge-text">Checking...</span>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <h3>Bedrock Edition</h3>
+                        <p class="card-desc">Required details for mobile, console, and Windows players.</p>
+
+                        <div class="bedrock-details-grid">
+                            <div class="ip-copy-wrapper">
+                                <div class="ip-display">
+                                    <span class="label">Server IP</span>
+                                    <code id="bedrock-ip">147.185.221.180</code>
+                                </div>
+                                <button class="btn-copy click-sound-trigger" type="button" data-copy-target="bedrock-ip" aria-label="Copy Bedrock IP">
+                                    <i class="far fa-copy"></i>
+                                </button>
+                            </div>
+                            <div class="ip-copy-wrapper">
+                                <div class="ip-display">
+                                    <span class="label">Port</span>
+                                    <code id="bedrock-port">15750</code>
+                                </div>
+                                <button class="btn-copy click-sound-trigger" type="button" data-copy-target="bedrock-port" aria-label="Copy Bedrock port">
+                                    <i class="far fa-copy"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="gallery" class="bento-section">
+            <div class="section-header reveal-fade">
+                <span class="pill-tag blue">Screenshots</span>
+                <h2 class="section-title">Server Gallery.</h2>
+                <p class="section-desc">A look at the landscapes and builds waiting inside The United Biomes.</p>
+            </div>
+
+            <div class="bento-grid-2">
+                <div class="bento-card gallery-card reveal-fade">
+                    <div class="card-top-bar">
+                        <span class="tag">Java Edition</span>
+                        <div class="card-dots"><span></span><span></span><span></span></div>
+                    </div>
+                    <div class="slider-container-new" id="java-slider">
+                        <div class="slides-new">
+                            <div class="slide-new active"><img src="java1.png" alt="Java landscape 1"></div>
+                            <div class="slide-new"><img src="java2.png" alt="Java landscape 2"></div>
+                        </div>
+                        <div class="slider-controls-new">
+                            <button class="arrow-btn prev click-sound-trigger" type="button" aria-label="Previous Java screenshot"><i class="fas fa-chevron-left"></i></button>
+                            <div class="dots-indicator" aria-label="Java screenshot selector">
+                                <span class="dot-ind active" data-index="0"></span>
+                                <span class="dot-ind" data-index="1"></span>
+                            </div>
+                            <button class="arrow-btn next click-sound-trigger" type="button" aria-label="Next Java screenshot"><i class="fas fa-chevron-right"></i></button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bento-card gallery-card reveal-fade">
+                    <div class="card-top-bar">
+                        <span class="tag">Bedrock Edition</span>
+                        <div class="card-dots"><span></span><span></span><span></span></div>
+                    </div>
+                    <div class="slider-container-new" id="bedrock-slider">
+                        <div class="slides-new">
+                            <div class="slide-new active"><img src="bedrock1.jpeg" alt="Bedrock landscape 1"></div>
+                            <div class="slide-new"><img src="bedrock2.jpeg" alt="Bedrock landscape 2"></div>
+                        </div>
+                        <div class="slider-controls-new">
+                            <button class="arrow-btn prev click-sound-trigger" type="button" aria-label="Previous Bedrock screenshot"><i class="fas fa-chevron-left"></i></button>
+                            <div class="dots-indicator" aria-label="Bedrock screenshot selector">
+                                <span class="dot-ind active" data-index="0"></span>
+                                <span class="dot-ind" data-index="1"></span>
+                            </div>
+                            <button class="arrow-btn next click-sound-trigger" type="button" aria-label="Next Bedrock screenshot"><i class="fas fa-chevron-right"></i></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="registration" class="bento-section">
+            <div class="section-header reveal-fade">
+                <span class="pill-tag purple">Tutorial</span>
+                <h2 class="section-title">Register once. Play daily.</h2>
+                <p class="section-desc">Protect your username the first time you join, then log in on future visits.</p>
+            </div>
+
+            <div class="bento-card guide-bento-card reveal-fade">
+                <div class="guide-steps-grid">
+                    <div class="guide-step">
+                        <div class="step-badge">01</div>
+                        <h3>Account Registration</h3>
+                        <p class="step-desc">When connecting for the first time, open in-game chat and create your password.</p>
+                        <div class="terminal-command-box">
+                            <code id="cmd-register">/register password password</code>
+                            <button class="btn-copy mini click-sound-trigger" type="button" data-copy-target="cmd-register" aria-label="Copy register command">
+                                <i class="far fa-copy"></i>
+                            </button>
+                        </div>
+                        <div class="step-tip">
+                            <i class="fas fa-info-circle"></i>
+                            <span>Type your chosen password twice. Avoid spaces.</span>
+                        </div>
+                    </div>
+
+                    <div class="guide-step">
+                        <div class="step-badge">02</div>
+                        <h3>Subsequent Logins</h3>
+                        <p class="step-desc">Every time you reconnect later, authenticate yourself to unlock movement.</p>
+                        <div class="terminal-command-box">
+                            <code id="cmd-login">/login password</code>
+                            <button class="btn-copy mini click-sound-trigger" type="button" data-copy-target="cmd-login" aria-label="Copy login command">
+                                <i class="far fa-copy"></i>
+                            </button>
+                        </div>
+                        <div class="step-tip">
+                            <i class="fas fa-shield-alt"></i>
+                            <span>Use the password you created in Step 1. Do not share it.</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="features" class="bento-section">
+            <div class="section-header reveal-fade">
+                <span class="pill-tag green">Features</span>
+                <h2 class="section-title">Why The United Biomes?</h2>
+                <p class="section-desc">A lightweight SMP built for friends, long builds, and easy crossplay.</p>
+            </div>
+
+            <div class="bento-grid-3">
+                <div class="bento-card feature-bento-card reveal-fade">
+                    <div class="feature-icon-wrapper crossplay">
+                        <i class="fas fa-gamepad"></i>
+                    </div>
+                    <h3>Crossplay Support</h3>
+                    <p>Java and Bedrock players share the same survival map from PC, mobile, and console.</p>
+                </div>
+
+                <div class="bento-card feature-bento-card reveal-fade">
+                    <div class="feature-icon-wrapper community">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3>Community SMP</h3>
+                    <p>A friendly world hosted by friends, with cooperation, building, and trade at the center.</p>
+                </div>
+
+                <div class="bento-card feature-bento-card reveal-fade">
+                    <div class="feature-icon-wrapper capacity">
+                        <i class="fas fa-server"></i>
+                    </div>
+                    <h3>50 Player Capacity</h3>
+                    <p>Room for a busy community session with tuned survival settings and reliable daily hours.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="testimonial-card reveal-fade">
+            <div class="testimonial-content">
+                <i class="fas fa-quote-left quote-large-icon"></i>
+                <blockquote>
+                    "The United Biomes is built to be a cozy, reliable, and lag-free survival space where friends across Java and Bedrock can build without boundaries."
+                </blockquote>
+                <div class="testimonial-author">
+                    <div class="author-details">
+                        <h4>@imthatmadman</h4>
+                        <p>Server Owner and Admin</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="discord-section" class="bento-section">
+            <div class="bento-grid-2 align-stretch">
+                <div class="bento-card widget-card reveal-fade">
+                    <iframe class="live-discord-iframe" title="United Biomes Discord widget" src="https://discord.com/widget?id=1506167248702799972&theme=dark" allowtransparency="true" frameborder="0" sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts"></iframe>
+                </div>
+
+                <div class="bento-card discord-cta-card reveal-fade">
+                    <div class="discord-logo-glow"><i class="fab fa-discord"></i></div>
+                    <h2>Join the Community Hub.</h2>
+                    <p>Get whitelisted, chat with online players, follow announcements, trade in market channels, and coordinate group projects.</p>
+                    <a href="https://discord.gg/Pjap87gSqY" target="_blank" rel="noreferrer" class="btn btn-primary discord-btn click-sound-trigger">
+                        Join Our Guild <i class="fab fa-discord"></i>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <section class="bento-section">
+            <div class="section-header reveal-fade">
+                <span class="pill-tag blue">FAQ</span>
+                <h2 class="section-title">Frequently asked questions.</h2>
+                <p class="section-desc">A few quick answers before you connect.</p>
+            </div>
+
+            <div class="faq-accordion-container reveal-fade">
+                <div class="faq-item">
+                    <button class="faq-question click-sound-trigger" type="button">
+                        <span>Is the server completely free to play?</span>
+                        <span class="faq-icon"><i class="fas fa-plus"></i></span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Yes. The United Biomes is free to join and play, with no pay-to-win items, crates, or ranks.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question click-sound-trigger" type="button">
+                        <span>How do I connect on Bedrock?</span>
+                        <span class="faq-icon"><i class="fas fa-plus"></i></span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Open the Servers tab, choose Add Server, then enter IP <code>147.185.221.180</code> and port <code>15750</code>.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question click-sound-trigger" type="button">
+                        <span>What Minecraft version is supported?</span>
+                        <span class="faq-icon"><i class="fas fa-plus"></i></span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>The server targets stable Minecraft releases and may support nearby versions through compatibility plugins.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question click-sound-trigger" type="button">
+                        <span>Why does the server show Offline at night?</span>
+                        <span class="faq-icon"><i class="fas fa-plus"></i></span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>The server is scheduled online from 9:00 AM to 9:00 PM IST every day, then goes offline until the next 9:00 AM opening.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question click-sound-trigger" type="button">
+                        <span>How do I get whitelisted?</span>
+                        <span class="faq-icon"><i class="fas fa-plus"></i></span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Join the Discord server and post your username in the whitelist channel so an admin can add you.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="modern-footer">
+        <div class="footer-grid">
+            <div class="footer-brand-col">
+                <a href="#home" class="footer-logo">
+                    <i class="fas fa-cubes"></i>
+                    <span>United Biomes</span>
+                </a>
+                <p class="brand-desc">A crossplay survival SMP community connecting friends across Java and Bedrock platforms.</p>
+                <div class="admin-contact">
+                    <span class="label">Admin Discord</span>
+                    <span class="admin-tag">@imthatmadman</span>
+                </div>
+            </div>
+
+            <div class="footer-links-col">
+                <h4>Navigation</h4>
+                <a href="#home">Home</a>
+                <a href="#server-info">Connection Info</a>
+                <a href="#gallery">Screenshot Gallery</a>
+                <a href="#registration">Registration Guide</a>
+            </div>
+
+            <div class="footer-links-col">
+                <h4>Community</h4>
+                <a href="https://discord.gg/Pjap87gSqY" target="_blank" rel="noreferrer">Discord Invite</a>
+                <a href="#discord-section">Live Member Widget</a>
+                <a href="#features">Server Capacity</a>
+            </div>
+
+            <div class="footer-links-col">
+                <h4>Legal</h4>
+                <p class="disclaimer-text">Not an official Minecraft product. Not approved by or associated with Mojang or Microsoft.</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 The United Biomes. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <div id="toast" class="mc-toast" role="status" aria-live="polite">
+        <span id="toast-message">Copied to clipboard!</span>
+    </div>
+
+    <canvas id="particle-canvas" aria-hidden="true"></canvas>
+    <script src="script.js"></script>
+</body>
+</html>
