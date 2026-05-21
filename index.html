@@ -13,11 +13,29 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div id="loader" class="pixel-loader-container" aria-hidden="true">
+    <div id="loader" class="pixel-loader-container" role="status" aria-live="polite" aria-label="Loading The United Biomes">
+        <div class="loader-spark-field" aria-hidden="true">
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
         <div class="pixel-loader">
-            <div class="pixel-box grass"></div>
-            <div class="pixel-box dirt"></div>
-            <p class="loader-text">Loading Biomes...</p>
+            <div class="loader-cube" aria-hidden="true">
+                <span class="cube-face cube-top"></span>
+                <span class="cube-face cube-front"></span>
+                <span class="cube-face cube-side"></span>
+            </div>
+            <div class="loader-copy">
+                <p class="loader-kicker">Entering SMP</p>
+                <p class="loader-text" id="loader-text">Loading The United Biomes</p>
+            </div>
+            <div class="loader-progress" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="8" aria-label="Loading progress">
+                <span id="loader-progress-bar"></span>
+            </div>
+            <p class="loader-status" id="loader-status">Preparing worlds...</p>
         </div>
     </div>
 

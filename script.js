@@ -166,11 +166,77 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const loader = document.getElementById("loader");
     if (loader) {
-        window.addEventListener("load", () => {
-            setTimeout(() => loader.classList.add("fade-out"), 450);
-        });
+        const loaderText = document.getElementById("loader-text");
+        const loaderStatus = document.getElementById("loader-status");
+        const loaderProgress = document.querySelector(".loader-progress");
+        const loaderProgressBar = document.getElementById("loader-progress-bar");
+        const loaderMessages = [
+            "Preparing worlds...",
+            "Growing forests...",
+            "Linking Java and Bedrock...",
+            "Opening spawn gates...",
+            "Lighting the portal...",
+            "Almost ready..."
+        ];
+        const startedAt = performance.now();
+        let loaderProgressValue = 8;
+        let loaderMessageIndex = 0;
+        let loaderFinishing = false;
+        let loaderDone = false;
 
-        setTimeout(() => loader.classList.add("fade-out"), 1500);
+        function setLoaderProgress(value) {
+            loaderProgressValue = Math.max(loaderProgressValue, Math.min(value, 100));
+
+            if (loaderProgressBar) {
+                loaderProgressBar.style.width = `${loaderProgressValue}%`;
+            }
+
+            if (loaderProgress) {
+                loaderProgress.setAttribute("aria-valuenow", String(Math.round(loaderProgressValue)));
+            }
+        }
+
+        const loaderTimer = window.setInterval(() => {
+            if (loaderDone) return;
+
+            loaderMessageIndex = (loaderMessageIndex + 1) % loaderMessages.length;
+            setLoaderProgress(Math.min(92, loaderProgressValue + 5 + Math.random() * 6));
+
+            if (loaderStatus) {
+                loaderStatus.textContent = loaderMessages[loaderMessageIndex];
+            }
+        }, 460);
+
+        function finishLoader() {
+            if (loaderFinishing || loaderDone) return;
+
+            loaderFinishing = true;
+            const elapsed = performance.now() - startedAt;
+            const completionDelay = Math.max(0, 2800 - elapsed);
+
+            window.setTimeout(completeLoader, completionDelay);
+        }
+
+        function completeLoader() {
+            if (loaderDone) return;
+
+            loaderDone = true;
+            window.clearInterval(loaderTimer);
+            setLoaderProgress(100);
+
+            if (loaderText) {
+                loaderText.textContent = "Welcome to The United Biomes";
+            }
+
+            if (loaderStatus) {
+                loaderStatus.textContent = "Ready to play.";
+            }
+
+            window.setTimeout(() => loader.classList.add("fade-out"), 620);
+        }
+
+        window.addEventListener("load", finishLoader, { once: true });
+        window.setTimeout(finishLoader, 4200);
     }
 
     const mobileToggle = document.querySelector(".mobile-menu-toggle");
