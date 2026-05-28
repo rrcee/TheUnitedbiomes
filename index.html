@@ -1,483 +1,485 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The United Biomes - Crossplay Survival SMP</title>
-    <meta name="description" content="Join The United Biomes, a crossplay survival SMP server for Java and Bedrock players.">
+    <title>United Biomes SMP | Season 2 Live</title>
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'deep-space': '#000000',
+                        'midnight-core': '#14151c',
+                        'cosmic-gray': '#052326',
+                        'stardust': '#ffffff',
+                        'guidepost-green': '#d3fb52',
+                        'muted-text': '#666666',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+                        display: ['Anton', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700;800&family=Public+Sans:wght@500;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="style.css">
+    <!-- Google Fonts for Design Spec Substitutes (Inter & Anton) -->
+    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        body {
+            background-color: #000000;
+            color: #ffffff;
+            font-family: 'Inter', sans-serif;
+            overflow-x: hidden;
+        }
+
+        /* Abstract Atmospheric Radial Gradients (The "Nebula") */
+        .nebula-gradient {
+            background: radial-gradient(rgb(211, 251, 82) 0%, rgb(122, 243, 255) 52%, rgba(0, 0, 0, 0) 78%);
+        }
+
+        @keyframes drift {
+            0% { transform: translate(0, 0) scale(1); opacity: 0.5; }
+            33% { transform: translate(3%, 5%) scale(1.05); opacity: 0.7; }
+            66% { transform: translate(-2%, 2%) scale(0.95); opacity: 0.4; }
+            100% { transform: translate(0, 0) scale(1); opacity: 0.5; }
+        }
+
+        .animate-nebula {
+            animation: drift 20s ease-in-out infinite;
+        }
+
+        /* Card Setup */
+        .smp-feature-card {
+            background: rgba(255, 255, 255, 0.04);
+            backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 24px;
+        }
+
+        /* Scroll Reveal Utility Classes */
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Hide Carousel Scrollbars */
+        .carousel-track::-webkit-scrollbar {
+            display: none;
+        }
+        .carousel-track {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
 </head>
-<body>
-    <div id="loader" class="pixel-loader-container" role="status" aria-live="polite" aria-label="Loading The United Biomes">
-        <div class="loader-spark-field" aria-hidden="true">
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-        </div>
-        <div class="pixel-loader">
-            <div class="loader-cube" aria-hidden="true">
-                <span class="cube-face cube-top"></span>
-                <span class="cube-face cube-front"></span>
-                <span class="cube-face cube-side"></span>
-            </div>
-            <div class="loader-copy">
-                <p class="loader-kicker">Entering SMP</p>
-                <p class="loader-text" id="loader-text">Loading The United Biomes</p>
-            </div>
-            <div class="loader-progress" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="8" aria-label="Loading progress">
-                <span id="loader-progress-bar"></span>
-            </div>
-            <p class="loader-status" id="loader-status">Preparing worlds...</p>
+<body class="antialiased selection:bg-guidepost-green selection:text-deep-space">
+
+    <!-- FIXED PARALLAX BACKGROUND NEBULA -->
+    <div class="fixed inset-0 z-0 pointer-events-none overflow-hidden">
+        <div id="parallax-bg" class="w-full h-full relative">
+            <div class="absolute -top-[20%] -left-[10%] w-[80vw] h-[80vw] rounded-full blur-[120px] mix-blend-screen opacity-50 nebula-gradient animate-nebula"></div>
+            <div class="absolute top-[40%] -right-[20%] w-[60vw] h-[60vw] rounded-full blur-[140px] mix-blend-screen opacity-30 nebula-gradient animate-nebula" style="animation-delay: -10s;"></div>
         </div>
     </div>
 
-    <nav class="modern-navbar">
-        <div class="navbar-content">
-            <a href="#home" class="nav-logo click-sound-trigger" aria-label="The United Biomes home">
-                <i class="fas fa-cubes"></i>
-                <span>United Biomes</span>
-            </a>
-
-            <div class="nav-links" aria-label="Primary navigation">
-                <a href="#home" class="nav-item active click-sound-trigger">Home</a>
-                <a href="#server-info" class="nav-item click-sound-trigger">Play</a>
-                <a href="#gallery" class="nav-item click-sound-trigger">Gallery</a>
-                <a href="#registration" class="nav-item click-sound-trigger">Guide</a>
-                <a href="#features" class="nav-item click-sound-trigger">Why Us</a>
-                <a href="#discord-section" class="nav-item click-sound-trigger">Discord</a>
+    <!-- STICKY TOP NAVIGATION BAR -->
+    <nav class="fixed top-0 left-0 w-full z-50 bg-deep-space/60 backdrop-blur-xl border-b border-midnight-core px-6 py-4">
+        <div class="max-w-7xl mx-auto flex items-center justify-between">
+            <div onclick="scrollToSection('hero-start')" class="flex items-center space-x-3 cursor-pointer">
+                <span class="font-bold text-lg tracking-tight text-stardust">UNITED BIOMES</span>
+                <span class="text-[12px] font-semibold bg-white/10 text-guidepost-green px-2.5 py-0.5 rounded-full tracking-wider">S2</span>
             </div>
 
-            <div class="nav-actions">
-                <button id="sound-toggle" class="sound-btn click-sound-trigger" type="button" aria-label="Toggle sound">
-                    <i class="fas fa-volume-up"></i>
-                </button>
-                <a href="https://discord.gg/Pjap87gSqY" target="_blank" rel="noreferrer" class="nav-cta-btn click-sound-trigger">
-                    Join Discord
-                </a>
+            <!-- Ghost Style Navigation Anchors -->
+            <div class="hidden md:flex items-center space-x-6 text-sm font-medium text-stardust">
+                <button onclick="scrollToSection('about')" class="hover:text-guidepost-green transition-colors py-2 px-3 rounded-[8px]">About</button>
+                <button onclick="scrollToSection('gallery')" class="hover:text-guidepost-green transition-colors py-2 px-3 rounded-[8px]">Screenshots</button>
+                <button onclick="scrollToSection('connect')" class="hover:text-guidepost-green transition-colors py-2 px-3 rounded-[8px]">Server IP</button>
+                <a href="https://discord.gg/vwjDavTF6e" target="_blank" class="bg-guidepost-green text-deep-space px-4 py-2 rounded-[8px] font-semibold hover:opacity-90 transition-all">Join Discord</a>
             </div>
-
-            <button class="mobile-menu-toggle click-sound-trigger" type="button" aria-label="Toggle menu" aria-expanded="false">
-                <i class="fas fa-bars"></i>
-            </button>
-        </div>
-
-        <div class="mobile-nav-dropdown">
-            <a href="#home" class="mobile-nav-item click-sound-trigger">Home</a>
-            <a href="#server-info" class="mobile-nav-item click-sound-trigger">Play</a>
-            <a href="#gallery" class="mobile-nav-item click-sound-trigger">Gallery</a>
-            <a href="#registration" class="mobile-nav-item click-sound-trigger">Guide</a>
-            <a href="#features" class="mobile-nav-item click-sound-trigger">Why Us</a>
-            <a href="#discord-section" class="mobile-nav-item click-sound-trigger">Discord</a>
-            <a href="https://discord.gg/Pjap87gSqY" target="_blank" rel="noreferrer" class="mobile-cta-btn click-sound-trigger">Join Discord</a>
         </div>
     </nav>
 
-    <audio id="click-sound" src="click.mp3" preload="auto"></audio>
+    <!-- SCROLL-LINKED VIDEO HERO SECTION (350vh height to allow scrolling) -->
+    <div id="hero-start" class="relative w-full h-[350vh] z-10">
+        <!-- Sticky Frame Container -->
+        <div class="sticky top-0 left-0 w-full h-screen overflow-hidden flex items-center justify-center">
+            
+            <!-- Scrub Video Canvas -->
+            <canvas id="smp-anim-canvas" class="absolute inset-0 w-full h-full object-cover opacity-40 mix-blend-screen z-0"></canvas>
+            
+            <!-- Dark Gradient Overlay for Readability -->
+            <div class="absolute inset-0 bg-gradient-to-b from-transparent via-deep-space/40 to-deep-space z-0"></div>
 
-    <header id="home" class="hero-section">
-        <div class="hero-container">
-            <div class="hero-copy">
-                <div class="hero-badge reveal-fade" id="global-status-badge">
-                    <span class="redstone-lamp loading" id="global-lamp"></span>
-                    <span id="global-status">Checking server status...</span>
-                </div>
-
-                <h1 class="hero-title reveal-fade">The United<br>Biomes.</h1>
-
-                <p class="hero-description reveal-fade">
-                    A vibrant crossplay survival SMP for Java and Bedrock players. Build together, explore together, and jump into a friend-run world that opens every day from 9 AM to 9 PM.
+            <!-- Parallax Content -->
+            <div id="hero-content" class="relative z-10 flex flex-col items-center justify-center text-center px-4 w-full transition-opacity duration-300">
+                <h1 class="text-[75px] sm:text-[140px] md:text-[201px] font-display font-black tracking-[calc(-0.02*1em)] leading-[0.8] text-stardust uppercase select-none drop-shadow-2xl">
+                    UNITED BIOMES
+                </h1>
+                <p class="text-base sm:text-heading text-stardust max-w-2xl font-normal mt-8 tracking-[-0.015em] opacity-90 px-4">
+                    A community-driven Minecraft Survival Server. Explore custom generation, build empires, and meet new friends.
                 </p>
-
-                <div class="hero-buttons reveal-fade">
-                    <a href="#server-info" class="btn btn-primary click-sound-trigger">
-                        Start Playing <i class="fas fa-arrow-right"></i>
-                    </a>
-                    <a href="https://discord.gg/Pjap87gSqY" target="_blank" rel="noreferrer" class="btn btn-secondary click-sound-trigger">
-                        <i class="fab fa-discord"></i> Join Discord
-                    </a>
-                </div>
-            </div>
-
-            <div class="hero-showcase reveal-fade">
-                <div class="hero-image-stack">
-                    <img class="hero-image hero-image-main" src="java1.png" alt="United Biomes Java survival landscape">
-                    <img class="hero-image hero-image-secondary" src="bedrock1.jpeg" alt="United Biomes Bedrock survival landscape">
-                </div>
-                <div class="hero-status-card">
-                    <span class="status-kicker">Server window</span>
-                    <strong id="status-window-label">9:00 AM - 9:00 PM IST</strong>
-                    <span id="status-countdown">Checking schedule...</span>
-                    <span id="server-time-label">Server time: --:--</span>
+                <div class="mt-12">
+                    <button onclick="scrollToSection('connect')" class="border border-guidepost-green text-stardust px-6 py-3 rounded-[8px] font-medium hover:bg-guidepost-green hover:text-deep-space transition-all duration-300 tracking-wide text-[14px]">
+                        GET SERVER IP →
+                    </button>
                 </div>
             </div>
         </div>
-    </header>
-
-    <main class="bento-wrapper">
-        <section id="server-info" class="bento-section">
-            <div class="section-header reveal-fade">
-                <span class="pill-tag green">Connect Now</span>
-                <h2 class="section-title">Jump right in.</h2>
-                <p class="section-desc">Add the server to your multiplayer list using the details below.</p>
-            </div>
-
-            <div class="bento-grid-3">
-                <div class="bento-card schedule-card reveal-fade">
-                    <div class="clock-widget">
-                        <div class="clock-casing">
-                            <div class="clock-dial" id="clock-dial">
-                                <div class="sun-face"><i class="fas fa-sun"></i></div>
-                                <div class="moon-face"><i class="fas fa-moon"></i></div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="schedule-info">
-                        <h3>Operating Hours</h3>
-                        <p class="time-label">9:00 AM - 9:00 PM IST, every day</p>
-                        <div class="live-status-pill">
-                            <span class="redstone-lamp loading" id="schedule-lamp"></span>
-                            <span id="schedule-status-text">Checking time...</span>
-                        </div>
-                        <p class="status-note" id="schedule-next-change">Server time sync starting...</p>
-                    </div>
-                </div>
-
-                <div class="bento-card connection-card java reveal-fade">
-                    <div class="card-header">
-                        <div class="platform-icon java"><i class="fab fa-java"></i></div>
-                        <div class="status-light-badge" id="java-status-badge">
-                            <span class="redstone-lamp loading"></span>
-                            <span class="badge-text">Checking...</span>
-                        </div>
-                    </div>
-                    <div class="card-body">
-                        <h3>Java Edition</h3>
-                        <p class="card-desc">Standard connection details for PC and desktop players.</p>
-
-                        <div class="ip-copy-wrapper">
-                            <div class="ip-display">
-                                <span class="label">Server IP</span>
-                                <code id="java-ip">know-chassis.gl.joinmc.link</code>
-                            </div>
-                            <button class="btn-copy click-sound-trigger" type="button" data-copy-target="java-ip" aria-label="Copy Java IP">
-                                <i class="far fa-copy"></i>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="bento-card connection-card bedrock reveal-fade">
-                    <div class="card-header">
-                        <div class="platform-icon bedrock"><i class="fas fa-mobile-alt"></i></div>
-                        <div class="status-light-badge" id="bedrock-status-badge">
-                            <span class="redstone-lamp loading"></span>
-                            <span class="badge-text">Checking...</span>
-                        </div>
-                    </div>
-                    <div class="card-body">
-                        <h3>Bedrock Edition</h3>
-                        <p class="card-desc">Required details for mobile, console, and Windows players.</p>
-
-                        <div class="bedrock-details-grid">
-                            <div class="ip-copy-wrapper">
-                                <div class="ip-display">
-                                    <span class="label">Server IP</span>
-                                    <code id="bedrock-ip">147.185.221.180</code>
-                                </div>
-                                <button class="btn-copy click-sound-trigger" type="button" data-copy-target="bedrock-ip" aria-label="Copy Bedrock IP">
-                                    <i class="far fa-copy"></i>
-                                </button>
-                            </div>
-                            <div class="ip-copy-wrapper">
-                                <div class="ip-display">
-                                    <span class="label">Port</span>
-                                    <code id="bedrock-port">15750</code>
-                                </div>
-                                <button class="btn-copy click-sound-trigger" type="button" data-copy-target="bedrock-port" aria-label="Copy Bedrock port">
-                                    <i class="far fa-copy"></i>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="gallery" class="bento-section">
-            <div class="section-header reveal-fade">
-                <span class="pill-tag blue">Screenshots</span>
-                <h2 class="section-title">Server Gallery.</h2>
-                <p class="section-desc">A look at the landscapes and builds waiting inside The United Biomes.</p>
-            </div>
-
-            <div class="bento-grid-2">
-                <div class="bento-card gallery-card reveal-fade">
-                    <div class="card-top-bar">
-                        <span class="tag">Java Edition</span>
-                        <div class="card-dots"><span></span><span></span><span></span></div>
-                    </div>
-                    <div class="slider-container-new" id="java-slider">
-                        <div class="slides-new">
-                            <div class="slide-new active"><img src="java1.png" alt="Java landscape 1"></div>
-                            <div class="slide-new"><img src="java2.png" alt="Java landscape 2"></div>
-                        </div>
-                        <div class="slider-controls-new">
-                            <button class="arrow-btn prev click-sound-trigger" type="button" aria-label="Previous Java screenshot"><i class="fas fa-chevron-left"></i></button>
-                            <div class="dots-indicator" aria-label="Java screenshot selector">
-                                <span class="dot-ind active" data-index="0"></span>
-                                <span class="dot-ind" data-index="1"></span>
-                            </div>
-                            <button class="arrow-btn next click-sound-trigger" type="button" aria-label="Next Java screenshot"><i class="fas fa-chevron-right"></i></button>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="bento-card gallery-card reveal-fade">
-                    <div class="card-top-bar">
-                        <span class="tag">Bedrock Edition</span>
-                        <div class="card-dots"><span></span><span></span><span></span></div>
-                    </div>
-                    <div class="slider-container-new" id="bedrock-slider">
-                        <div class="slides-new">
-                            <div class="slide-new active"><img src="bedrock1.jpeg" alt="Bedrock landscape 1"></div>
-                            <div class="slide-new"><img src="bedrock2.jpeg" alt="Bedrock landscape 2"></div>
-                        </div>
-                        <div class="slider-controls-new">
-                            <button class="arrow-btn prev click-sound-trigger" type="button" aria-label="Previous Bedrock screenshot"><i class="fas fa-chevron-left"></i></button>
-                            <div class="dots-indicator" aria-label="Bedrock screenshot selector">
-                                <span class="dot-ind active" data-index="0"></span>
-                                <span class="dot-ind" data-index="1"></span>
-                            </div>
-                            <button class="arrow-btn next click-sound-trigger" type="button" aria-label="Next Bedrock screenshot"><i class="fas fa-chevron-right"></i></button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="registration" class="bento-section">
-            <div class="section-header reveal-fade">
-                <span class="pill-tag purple">Tutorial</span>
-                <h2 class="section-title">Register once. Play daily.</h2>
-                <p class="section-desc">Protect your username the first time you join, then log in on future visits.</p>
-            </div>
-
-            <div class="bento-card guide-bento-card reveal-fade">
-                <div class="guide-steps-grid">
-                    <div class="guide-step">
-                        <div class="step-badge">01</div>
-                        <h3>Account Registration</h3>
-                        <p class="step-desc">When connecting for the first time, open in-game chat and create your password.</p>
-                        <div class="terminal-command-box">
-                            <code id="cmd-register">/register password password</code>
-                            <button class="btn-copy mini click-sound-trigger" type="button" data-copy-target="cmd-register" aria-label="Copy register command">
-                                <i class="far fa-copy"></i>
-                            </button>
-                        </div>
-                        <div class="step-tip">
-                            <i class="fas fa-info-circle"></i>
-                            <span>Type your chosen password twice. Avoid spaces.</span>
-                        </div>
-                    </div>
-
-                    <div class="guide-step">
-                        <div class="step-badge">02</div>
-                        <h3>Subsequent Logins</h3>
-                        <p class="step-desc">Every time you reconnect later, authenticate yourself to unlock movement.</p>
-                        <div class="terminal-command-box">
-                            <code id="cmd-login">/login password</code>
-                            <button class="btn-copy mini click-sound-trigger" type="button" data-copy-target="cmd-login" aria-label="Copy login command">
-                                <i class="far fa-copy"></i>
-                            </button>
-                        </div>
-                        <div class="step-tip">
-                            <i class="fas fa-shield-alt"></i>
-                            <span>Use the password you created in Step 1. Do not share it.</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="features" class="bento-section">
-            <div class="section-header reveal-fade">
-                <span class="pill-tag green">Features</span>
-                <h2 class="section-title">Why The United Biomes?</h2>
-                <p class="section-desc">A lightweight SMP built for friends, long builds, and easy crossplay.</p>
-            </div>
-
-            <div class="bento-grid-3">
-                <div class="bento-card feature-bento-card reveal-fade">
-                    <div class="feature-icon-wrapper crossplay">
-                        <i class="fas fa-gamepad"></i>
-                    </div>
-                    <h3>Crossplay Support</h3>
-                    <p>Java and Bedrock players share the same survival map from PC, mobile, and console.</p>
-                </div>
-
-                <div class="bento-card feature-bento-card reveal-fade">
-                    <div class="feature-icon-wrapper community">
-                        <i class="fas fa-users"></i>
-                    </div>
-                    <h3>Community SMP</h3>
-                    <p>A friendly world hosted by friends, with cooperation, building, and trade at the center.</p>
-                </div>
-
-                <div class="bento-card feature-bento-card reveal-fade">
-                    <div class="feature-icon-wrapper capacity">
-                        <i class="fas fa-server"></i>
-                    </div>
-                    <h3>50 Player Capacity</h3>
-                    <p>Room for a busy community session with tuned survival settings and reliable daily hours.</p>
-                </div>
-            </div>
-        </section>
-
-        <section class="testimonial-card reveal-fade">
-            <div class="testimonial-content">
-                <i class="fas fa-quote-left quote-large-icon"></i>
-                <blockquote>
-                    "The United Biomes is built to be a cozy, reliable, and lag-free survival space where friends across Java and Bedrock can build without boundaries."
-                </blockquote>
-                <div class="testimonial-author">
-                    <div class="author-details">
-                        <h4>@imthatmadman</h4>
-                        <p>Server Owner and Admin</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="discord-section" class="bento-section">
-            <div class="bento-grid-2 align-stretch">
-                <div class="bento-card widget-card reveal-fade">
-                    <iframe class="live-discord-iframe" title="United Biomes Discord widget" src="https://discord.com/widget?id=1506167248702799972&theme=dark" allowtransparency="true" frameborder="0" sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts"></iframe>
-                </div>
-
-                <div class="bento-card discord-cta-card reveal-fade">
-                    <div class="discord-logo-glow"><i class="fab fa-discord"></i></div>
-                    <h2>Join the Community Hub.</h2>
-                    <p>Get whitelisted, chat with online players, follow announcements, trade in market channels, and coordinate group projects.</p>
-                    <a href="https://discord.gg/Pjap87gSqY" target="_blank" rel="noreferrer" class="btn btn-primary discord-btn click-sound-trigger">
-                        Join Our Guild <i class="fab fa-discord"></i>
-                    </a>
-                </div>
-            </div>
-        </section>
-
-        <section class="bento-section">
-            <div class="section-header reveal-fade">
-                <span class="pill-tag blue">FAQ</span>
-                <h2 class="section-title">Frequently asked questions.</h2>
-                <p class="section-desc">A few quick answers before you connect.</p>
-            </div>
-
-            <div class="faq-accordion-container reveal-fade">
-                <div class="faq-item">
-                    <button class="faq-question click-sound-trigger" type="button">
-                        <span>Is the server completely free to play?</span>
-                        <span class="faq-icon"><i class="fas fa-plus"></i></span>
-                    </button>
-                    <div class="faq-answer">
-                        <p>Yes. The United Biomes is free to join and play, with no pay-to-win items, crates, or ranks.</p>
-                    </div>
-                </div>
-
-                <div class="faq-item">
-                    <button class="faq-question click-sound-trigger" type="button">
-                        <span>How do I connect on Bedrock?</span>
-                        <span class="faq-icon"><i class="fas fa-plus"></i></span>
-                    </button>
-                    <div class="faq-answer">
-                        <p>Open the Servers tab, choose Add Server, then enter IP <code>147.185.221.180</code> and port <code>15750</code>.</p>
-                    </div>
-                </div>
-
-                <div class="faq-item">
-                    <button class="faq-question click-sound-trigger" type="button">
-                        <span>What Minecraft version is supported?</span>
-                        <span class="faq-icon"><i class="fas fa-plus"></i></span>
-                    </button>
-                    <div class="faq-answer">
-                        <p>The server targets stable Minecraft releases and may support nearby versions through compatibility plugins.</p>
-                    </div>
-                </div>
-
-                <div class="faq-item">
-                    <button class="faq-question click-sound-trigger" type="button">
-                        <span>Why does the server show Offline at night?</span>
-                        <span class="faq-icon"><i class="fas fa-plus"></i></span>
-                    </button>
-                    <div class="faq-answer">
-                        <p>The server is scheduled online from 9:00 AM to 9:00 PM IST every day, then goes offline until the next 9:00 AM opening.</p>
-                    </div>
-                </div>
-
-                <div class="faq-item">
-                    <button class="faq-question click-sound-trigger" type="button">
-                        <span>How do I get whitelisted?</span>
-                        <span class="faq-icon"><i class="fas fa-plus"></i></span>
-                    </button>
-                    <div class="faq-answer">
-                        <p>Join the Discord server and post your username in the whitelist channel so an admin can add you.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-    </main>
-
-    <footer class="modern-footer">
-        <div class="footer-grid">
-            <div class="footer-brand-col">
-                <a href="#home" class="footer-logo">
-                    <i class="fas fa-cubes"></i>
-                    <span>United Biomes</span>
-                </a>
-                <p class="brand-desc">A crossplay survival SMP community connecting friends across Java and Bedrock platforms.</p>
-                <div class="admin-contact">
-                    <span class="label">Admin Discord</span>
-                    <span class="admin-tag">@imthatmadman</span>
-                </div>
-            </div>
-
-            <div class="footer-links-col">
-                <h4>Navigation</h4>
-                <a href="#home">Home</a>
-                <a href="#server-info">Connection Info</a>
-                <a href="#gallery">Screenshot Gallery</a>
-                <a href="#registration">Registration Guide</a>
-            </div>
-
-            <div class="footer-links-col">
-                <h4>Community</h4>
-                <a href="https://discord.gg/Pjap87gSqY" target="_blank" rel="noreferrer">Discord Invite</a>
-                <a href="#discord-section">Live Member Widget</a>
-                <a href="#features">Server Capacity</a>
-            </div>
-
-            <div class="footer-links-col">
-                <h4>Legal</h4>
-                <p class="disclaimer-text">Not an official Minecraft product. Not approved by or associated with Mojang or Microsoft.</p>
-            </div>
-        </div>
-        <div class="footer-bottom">
-            <p>&copy; 2026 The United Biomes. All rights reserved.</p>
-        </div>
-    </footer>
-
-    <div id="toast" class="mc-toast" role="status" aria-live="polite">
-        <span id="toast-message">Copied to clipboard!</span>
     </div>
 
-    <canvas id="particle-canvas" aria-hidden="true"></canvas>
-    <script src="script.js"></script>
+    <!-- MAIN INTERACTIVE INTERFACE WRAPPER -->
+    <div class="relative z-20 max-w-6xl mx-auto px-6 pb-32 space-y-32 -mt-20">
+        
+        <!-- INTRO FEATURE BLOCK CARD -->
+        <section id="about" class="smp-feature-card p-8 md:p-16 shadow-2xl relative overflow-hidden reveal">
+            <div class="max-w-4xl space-y-6">
+                <span class="inline-block bg-white/5 border border-midnight-core text-guidepost-green text-[12px] uppercase tracking-widest px-3 py-1 rounded-full">System Profile</span>
+                <h2 class="text-heading sm:text-heading-lg font-bold text-stardust tracking-tight">Welcome to Season 2</h2>
+                <p class="text-stardust/80 text-body sm:text-subheading leading-relaxed max-w-3xl">
+                    United Biomes is structured to provide an uncompromised, clean multiplayer survival environment. Whether you are a master technical redstoner, a massive scale builder, or an adventurer charting unexplored horizons, there is a dedicated slot for you inside our network hubs.
+                </p>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 pt-8">
+                    <div class="space-y-2">
+                        <h3 class="text-stardust font-medium text-[16px]">Fresh Terrain To Explore</h3>
+                        <p class="text-muted-text text-[14px]">Overhauled biome logic, vanilla-compatible updates, and massive custom landscapes.</p>
+                    </div>
+                    <div class="space-y-2">
+                        <h3 class="text-stardust font-medium text-[16px]">No Pay-To-Win Elements</h3>
+                        <p class="text-muted-text text-[14px]">Play on equal footing. Build shops, claim land, and grow without unfair rank advantages.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SERVER GALLERY IMAGES CAROUSEL SECTION (16:9, Uncropped, Auto-animated) -->
+        <section id="gallery" class="space-y-8 reveal">
+            <div class="flex items-end justify-between border-b border-midnight-core pb-4">
+                <div class="space-y-1">
+                    <span class="text-guidepost-green uppercase tracking-wider text-[12px] font-semibold">Visual Archives</span>
+                    <h2 class="text-heading font-bold text-stardust tracking-tight">Server Gallery</h2>
+                </div>
+                <div class="flex space-x-2">
+                    <button onclick="manualScroll('left')" class="border border-midnight-core bg-transparent text-stardust text-[14px] px-4 py-2 rounded-[8px] hover:border-guidepost-green transition-all">
+                        ← Prev
+                    </button>
+                    <button onclick="manualScroll('right')" class="border border-midnight-core bg-transparent text-stardust text-[14px] px-4 py-2 rounded-[8px] hover:border-guidepost-green transition-all">
+                        Next →
+                    </button>
+                </div>
+            </div>
+
+            <!-- Snap-mandatory container injected with JS -->
+            <div id="smp-carousel" class="carousel-track flex space-x-6 overflow-x-auto scroll-smooth snap-x snap-mandatory pb-4"></div>
+        </section>
+
+        <!-- CONNECTION PORTALS GRID -->
+        <section id="connect" class="space-y-10 reveal">
+            <div class="text-center space-y-2 max-w-2xl mx-auto">
+                <span class="text-guidepost-green uppercase tracking-wider text-[12px] font-semibold">Gateway Access</span>
+                <h2 class="text-heading sm:text-heading-lg font-bold text-stardust tracking-tight">How to Connect</h2>
+                <p class="text-[16px] text-muted-text">We fully support both Minecraft Java Edition and Bedrock Crossplay vectors.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <!-- Java Terminal -->
+                <div class="smp-feature-card p-8 flex flex-col justify-between space-y-8 hover:-translate-y-1 transition-transform duration-300">
+                    <div class="space-y-6">
+                        <div class="flex items-center justify-between">
+                            <h3 class="text-heading-sm font-bold text-stardust tracking-tight">Java Edition (PC)</h3>
+                            <span class="text-[12px] font-medium bg-white/5 text-stardust border border-midnight-core px-3 py-1 rounded-[9999px]">Desktop</span>
+                        </div>
+                        <div class="bg-deep-space/50 rounded-[24px] p-6 border border-midnight-core">
+                            <p class="text-[12px] text-muted-text font-mono mb-2 uppercase tracking-wider">SERVER ADDRESS</p>
+                            <p class="font-mono text-[16px] text-stardust select-all tracking-tight">categories-surgical.gl.joinmc.link</p>
+                        </div>
+                    </div>
+                    <button onclick="copyIP('categories-surgical.gl.joinmc.link', this)" class="w-full bg-guidepost-green text-deep-space py-3.5 rounded-[8px] font-medium hover:opacity-90 transition-all tracking-wide text-[14px]">
+                        Copy Java IP
+                    </button>
+                </div>
+
+                <!-- Bedrock Terminal -->
+                <div class="smp-feature-card p-8 flex flex-col justify-between space-y-8 hover:-translate-y-1 transition-transform duration-300">
+                    <div class="space-y-6">
+                        <div class="flex items-center justify-between">
+                            <h3 class="text-heading-sm font-bold text-stardust tracking-tight">Bedrock Crossplay</h3>
+                            <span class="text-[12px] font-medium bg-white/5 text-stardust border border-midnight-core px-3 py-1 rounded-[9999px]">Console / Mobile</span>
+                        </div>
+                        <div class="grid grid-cols-3 gap-4">
+                            <div class="bg-deep-space/50 rounded-[24px] p-6 border border-midnight-core col-span-2">
+                                <p class="text-[12px] text-muted-text font-mono mb-2 uppercase tracking-wider">IP ADDRESS</p>
+                                <p class="font-mono text-[16px] text-stardust select-all tracking-tight">147.185.221.180</p>
+                            </div>
+                            <div class="bg-deep-space/50 rounded-[24px] p-6 border border-midnight-core">
+                                <p class="text-[12px] text-muted-text font-mono mb-2 uppercase tracking-wider">PORT</p>
+                                <p class="font-mono text-[16px] text-stardust select-all tracking-tight">15750</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="grid grid-cols-2 gap-4">
+                        <button onclick="copyIP('147.185.221.180', this)" class="bg-transparent border border-midnight-core text-stardust py-3.5 rounded-[8px] font-medium hover:border-guidepost-green hover:text-guidepost-green transition-all text-[14px]">
+                            Copy IP
+                        </button>
+                        <button onclick="copyIP('15750', this)" class="bg-transparent border border-midnight-core text-stardust py-3.5 rounded-[8px] font-medium hover:border-guidepost-green hover:text-guidepost-green transition-all text-[14px]">
+                            Copy Port
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- DISCORD COMMUNICATIONS HUB LINK -->
+        <section id="discord" class="bg-white/5 backdrop-blur-xl border border-midnight-core rounded-[24px] p-10 md:p-16 text-center space-y-6 reveal">
+            <div class="max-w-xl mx-auto space-y-4">
+                <span class="inline-block bg-deep-space/50 border border-midnight-core text-guidepost-green text-[12px] uppercase tracking-widest px-3 py-1 rounded-[9999px]">Social Comms</span>
+                <h2 class="text-heading font-bold text-stardust tracking-tight">Join Our Discord Hub</h2>
+                <p class="text-[16px] text-stardust/70 leading-relaxed">
+                    Chat with players while you're offline, read announcements, view server build events, trade with player shops, or create support tickets instantly.
+                </p>
+                <div class="pt-6">
+                    <a href="https://discord.gg/vwjDavTF6e" target="_blank" class="inline-block bg-guidepost-green text-deep-space font-medium text-[16px] px-8 py-3.5 rounded-[8px] hover:opacity-90 transition-all tracking-wide">
+                        Open Discord Invite Link
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- FOOTER -->
+        <footer class="border-t border-midnight-core pt-12 pb-8 text-[12px] text-muted-text space-y-4 reveal">
+            <p class="leading-relaxed max-w-4xl">
+                United Biomes exists as an independent, player-funded gaming community environment. We hold zero official asset contracts, operational agreements, affiliations, or structural sponsorships with Mojang Synergies AB or Microsoft Corp.
+            </p>
+            <div class="flex items-center justify-between text-[11px] font-mono pt-4 text-muted-text/60">
+                <p>© 2026 UNITED BIOMES NETWORK.</p>
+                <p>DESIGN STYLED BY HANDSHAKE_V4</p>
+            </div>
+        </footer>
+    </div>
+
+    <!-- SCRIPT LOGIC -->
+    <script>
+        /* ==========================================================================
+           1. HERO INTERPOLATION SCROLL CANVAS MANAGEMENT (Frames)
+           ========================================================================== */
+        const TOTAL_FRAMES = 271;
+        const frames = [];
+        const canvas = document.getElementById('smp-anim-canvas');
+        const ctx = canvas.getContext('2d');
+
+        // Target the png frames folder sequence
+        const frameUrls = Array.from({ length: TOTAL_FRAMES }, (_, i) => {
+            const frameNum = String(i + 1).padStart(3, "0");
+            return `./frames/ezgif-frame-${frameNum}.png`;
+        });
+
+        // Smart frame rendering logic (acts like object-cover to fill screen)
+        function renderFrameToCanvas(img) {
+            if (!img || !img.complete) return;
+            const w = window.innerWidth;
+            const h = window.innerHeight;
+            canvas.width = w;
+            canvas.height = h;
+
+            const imgRatio = img.width / img.height;
+            const canvasRatio = w / h;
+
+            let dx = 0, dy = 0, dw = w, dh = h;
+            if (canvasRatio > imgRatio) {
+                dh = w / imgRatio;
+                dy = (h - dh) / 2;
+            } else {
+                dw = h * imgRatio;
+                dx = (w - dw) / 2;
+            }
+
+            ctx.clearRect(0, 0, w, h);
+            ctx.drawImage(img, dx, dy, dw, dh);
+        }
+
+        // Initialize and preload video sequence frames
+        const initialImg = new Image();
+        initialImg.src = frameUrls[0];
+        initialImg.onload = () => {
+            frames[0] = initialImg;
+            renderFrameToCanvas(initialImg);
+            
+            // Preload the rest asynchronously
+            frameUrls.forEach((url, index) => {
+                if (index === 0) return;
+                const img = new Image();
+                img.src = url;
+                img.onload = () => { frames[index] = img; };
+            });
+        };
+
+        // Handle canvas scrub and parallax on scroll
+        const heroSection = document.getElementById('hero-start');
+        const heroContent = document.getElementById('hero-content');
+        const parallaxBg = document.getElementById('parallax-bg');
+
+        window.addEventListener('scroll', () => {
+            const scrollTop = window.scrollY;
+            const heroHeight = heroSection.scrollHeight;
+            const maxScroll = heroHeight - window.innerHeight;
+
+            // Handle frame rendering logic based on scroll percentage inside the 350vh container
+            if (scrollTop <= maxScroll && maxScroll > 0) {
+                const fraction = Math.max(0, Math.min(1, scrollTop / maxScroll));
+                const frameIndex = Math.floor(fraction * (TOTAL_FRAMES - 1));
+                
+                requestAnimationFrame(() => {
+                    if (frames[frameIndex]) {
+                        renderFrameToCanvas(frames[frameIndex]);
+                    }
+                });
+
+                // Fade out text to allow clear view of the canvas scrolling sequence
+                if (heroContent) {
+                    heroContent.style.opacity = 1 - (scrollTop / (window.innerHeight * 0.6));
+                    heroContent.style.transform = `translateY(${scrollTop * 0.4}px)`;
+                }
+            }
+
+            // Global Background Parallax
+            if (parallaxBg) {
+                parallaxBg.style.transform = `translateY(${scrollTop * 0.3}px)`;
+            }
+        });
+
+        window.addEventListener('resize', () => {
+            if (frames[0]) renderFrameToCanvas(frames[0]);
+        });
+
+
+        /* ==========================================================================
+           2. SERVER GALLERY LOCAL SCREENSHOT ARCHIVE - AUTO ANIMATED & UNCROPPED
+           ========================================================================== */
+        const GALLERY_IMAGES = [
+            "Screenshot 2026-05-28 175010.png",
+            "Screenshot 2026-05-28 174819.png",
+            "Screenshot 2026-05-28 174812.png",
+            "Screenshot 2026-05-28 174715.png",
+            "Screenshot 2026-05-28 174538.png",
+            "Screenshot 2026-05-28 174517.png",
+            "Screenshot 2026-05-28 174451.png",
+            "Screenshot 2026-05-28 174115.png",
+            "Screenshot 2026-05-21 112740.png",
+            "Screenshot 2026-05-21 111817.png",
+            "Screenshot 2026-05-20 100047.png",
+            "Screenshot 2026-05-20 100007.png",
+            "Screenshot 2026-05-20 095723.png"
+        ];
+
+        // Shuffle elements randomly for a fresh look
+        const shuffledImages = GALLERY_IMAGES.sort(() => 0.5 - Math.random());
+        const carouselTrack = document.getElementById('smp-carousel');
+
+        shuffledImages.forEach((filename) => {
+            const card = document.createElement('div');
+            // Uncropped, 16:9 ratio strict containment using 'object-contain' and a black background padding area
+            card.className = "w-full md:min-w-[80%] lg:min-w-[70%] bg-deep-space border border-midnight-core rounded-[24px] overflow-hidden snap-center flex-shrink-0 flex items-center justify-center";
+            card.innerHTML = `<img src="./images/${filename}" alt="SMP Game Capture" class="w-full aspect-[16/9] object-contain bg-black/50" />`;
+            carouselTrack.appendChild(card);
+        });
+
+        // Automatic Carousel Logic
+        let autoScrollInterval;
+        const SCROLL_DELAY = 4000;
+
+        function startAutoScroll() {
+            autoScrollInterval = setInterval(() => {
+                if(!carouselTrack) return;
+                
+                const scrollLeft = carouselTrack.scrollLeft;
+                const maxScroll = carouselTrack.scrollWidth - carouselTrack.clientWidth;
+                const step = carouselTrack.children[0].clientWidth + 24; // Card width + gap
+
+                if (scrollLeft >= maxScroll - 10) {
+                    carouselTrack.scrollTo({ left: 0, behavior: 'smooth' }); // Reset to start
+                } else {
+                    carouselTrack.scrollBy({ left: step, behavior: 'smooth' });
+                }
+            }, SCROLL_DELAY);
+        }
+
+        // Reset the timer if user manually interacts so it doesn't fight them
+        function resetAutoScroll() {
+            clearInterval(autoScrollInterval);
+            startAutoScroll();
+        }
+
+        function manualScroll(direction) {
+            resetAutoScroll();
+            const step = carouselTrack.children[0].clientWidth + 24;
+            if (direction === 'left') {
+                carouselTrack.scrollBy({ left: -step, behavior: 'smooth' });
+            } else {
+                carouselTrack.scrollBy({ left: step, behavior: 'smooth' });
+            }
+        }
+
+        // Start gallery loop
+        startAutoScroll();
+
+
+        /* ==========================================================================
+           3. UI CONTROLS & REVEAL ENGINE
+           ========================================================================== */
+        // Reveal elements on scroll
+        const revealElements = document.querySelectorAll('.reveal');
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                    revealObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.1 });
+        revealElements.forEach(el => revealObserver.observe(el));
+
+        function copyIP(text, button) {
+            navigator.clipboard.writeText(text).then(() => {
+                const originalText = button.innerText;
+                const originalBg = button.style.backgroundColor;
+                const originalColor = button.style.color;
+
+                button.innerText = "✓ COPIED";
+                button.style.backgroundColor = "#ffffff";
+                button.style.color = "#000000";
+                
+                setTimeout(() => {
+                    button.innerText = originalText;
+                    button.style.backgroundColor = originalBg;
+                    button.style.color = originalColor;
+                }, 2000);
+            });
+        }
+
+        function scrollToSection(id) {
+            const target = document.getElementById(id);
+            if (target) {
+                const navHeight = 72;
+                const elementPosition = target.getBoundingClientRect().top;
+                const offsetPosition = elementPosition + window.pageYOffset - navHeight;
+                window.scrollTo({
+                    top: offsetPosition,
+                    behavior: "smooth"
+                });
+            }
+        }
+    </script>
 </body>
 </html>
